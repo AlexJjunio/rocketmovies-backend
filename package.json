@@ -1,14 +1,13 @@
 {
   "name": "rocketmovies-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "API desenvolvida para armazenar banco de dados de uma aplicação de filmes.",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Alex Junio Moreira",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"

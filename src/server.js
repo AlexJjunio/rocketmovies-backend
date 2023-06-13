@@ -1,11 +1,12 @@
 const express = require("express");
+
 const app = express();
 
-const PORT = 3333;
-app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`))
+app.use(express.json())
 
 const routes = require("./routes")
 
-app.use(express.json())
+const PORT = 3333;
+app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
 
 app.use(routes);

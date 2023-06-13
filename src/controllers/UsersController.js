@@ -1,8 +1,7 @@
 class UsersController {
-  create(request, response) {
-    const { name, email, password} = request.body;
-
-    response.status(201).json({name, email, password});
+  create( req,res ) {
+    const { name, email, password } = req.body;
+    res.status(201).json({name, email, password})
   }
 }
 
