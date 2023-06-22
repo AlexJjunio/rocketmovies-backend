@@ -4,15 +4,15 @@ const AppError = require("./utils/AppError");
 const express = require("express");
 const app = express();
 
-const database = require("./database/sqlite")
+const migrationsRun = require("./database/sqlite/migrations")
 
 app.use(express.json())
 
 const routes = require("./routes");
+migrationsRun();
 
 app.use(routes);
 
-database();
 
 app.use((error, req, res, next) => {
   
