@@ -11,10 +11,6 @@ function myMiddleware(req, res, next) {
 
   console.log(req.body.name)
 
-  if(!req.body.isAdmin) {
-    return res.json({ message : 'Você não é um Admin.'});
-  }
-
   next();
 }
 

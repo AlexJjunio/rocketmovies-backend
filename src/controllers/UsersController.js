@@ -1,18 +1,26 @@
-const AppError = require("../utils/AppError")
+const AppError = require("../utils/AppError");
+const { hash } = require("bcryptjs");
+
+const sqliteConnection = require("../database/sqlite");
 
 class UsersController {
-  create( req,res ) {
+  async create( req,res ) {
     const { name, email, password } = req.body;
-    
-    if(!name) {
-      throw new AppError("Você não informou o nome.")
+    const database = await sqliteConnection();
+    const checkUserExist = await database.get("SELECT * FROM users WHERE email = (?)", [email]);
+
+    if (checkUserExist) {
+      throw new AppError("Este e-mail já está em uso.");
     }
 
-    if(!password) {
-      throw new AppError("Senha é obrigatório")
-    }
+    const hashedPassword = await hash(password, 8);
 
-    res.status(201).json({name, email, password})
+    await database.run(
+      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+      [name, email, hashedPassword]
+  )
+
+    return res.status(201).json()
   }
 }
 
