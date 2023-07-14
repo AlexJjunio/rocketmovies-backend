@@ -6,15 +6,7 @@ const UsersController = require("../controllers/UsersController");
 
 const usersController = new UsersController();
 
-function myMiddleware(req, res, next) {
-  console.log("Middleware está de olho em você")
-
-  console.log(req.body.name)
-
-  next();
-}
-
-usersRoutes.post("/",myMiddleware,usersController.create);
-usersRoutes.put("/:id",myMiddleware,usersController.update);
+usersRoutes.post("/",usersController.create);
+usersRoutes.put("/:id",usersController.update);
 
 module.exports = usersRoutes;
